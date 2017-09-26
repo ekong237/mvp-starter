@@ -11,12 +11,33 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var recipeSchema = mongoose.Schema({
+  id: { type: String, unique: true },
+  name: String,
+  image_url: String,
+  source_url: String
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Recipe = mongoose.model('Recipe', recipeSchema);
+
+var save = (arrOfRecipeObj) => {
+  let arrOfRecipePromises = arrOfRecipeObj.map((eachRecipe)=>{
+    return createEach(eachRecipe).save();
+  });
+
+  return Promise.all(arrOfRecipePromises);
+};
+
+var createEach = (eachRecipe) => {
+  var insertRecipeObj = {
+    id: eachRecipe.recipe_id,
+    name: eachRecipe.title,
+    image_url: eachRecipe.image_url,
+    source_url: eachRecipe.source_url
+  }
+  let newRecipePromise = new Recipe(insertRecipeObj);
+  return newRecipePromise;
+};
 
 var selectAll = function(callback) {
   Item.find({}, function(err, items) {
@@ -28,4 +49,5 @@ var selectAll = function(callback) {
   });
 };
 
+module.exports.save = save;
 module.exports.selectAll = selectAll;
