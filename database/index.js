@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
-
 var db = mongoose.connection;
 
 db.on('error', function() {
@@ -20,12 +19,13 @@ var recipeSchema = mongoose.Schema({
 
 var Recipe = mongoose.model('Recipe', recipeSchema);
 
-var save = (arrOfRecipeObj) => {
-  let arrOfRecipePromises = arrOfRecipeObj.map((eachRecipe)=>{
-    return createEach(eachRecipe).save();
-  });
+var find = () => {
+  return Recipe.find();
+}
 
-  return Promise.all(arrOfRecipePromises);
+var save = (oneObjEntry) => {
+  let recipePromise = createEach(oneObjEntry).save();
+  return recipePromise;
 };
 
 var createEach = (eachRecipe) => {
@@ -50,4 +50,5 @@ var selectAll = function(callback) {
 };
 
 module.exports.save = save;
+module.exports.find = find;
 module.exports.selectAll = selectAll;

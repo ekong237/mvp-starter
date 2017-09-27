@@ -34,7 +34,24 @@ var data = [
        image_url: 'http://static.food2fork.com/5208885754.jpg',
        social_rank: 94.7251182497445,
        publisher_url: 'http://allrecipes.com' 
-  }     
+  },
+  { 
+    publisher: 'All Recipes',
+    f2f_url: 'http://food2fork.com/view/34678',
+    title: 'World’s Best Lasagna',
+    source_url: 'http://allrecipes.com/Recipe/Worlds-Best-Lasagna/Detail.aspx',
+    recipe_id: '34678',
+    image_url: 'http://static.food2fork.com/3242749be.jpg',
+    social_rank: 99.9999999999999,
+    publisher_url: 'http://allrecipes.com' },
+  { 
+    publisher: 'All Recipes',
+    f2f_url: 'http://food2fork.com/view/3676',
+    title: 'Best Ever Jalapeno Poppers',
+    source_url: 'http://allrecipes.com/Recipe/Best-Ever-Jalapeno-Poppers/Detail.aspx',
+    recipe_id: '3676',
+    image_url: 'http://static.food2fork.com/1085983c5b.jpg'
+  }
 ];
 
 export default data;
